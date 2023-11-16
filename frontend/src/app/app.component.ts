@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
         }
       })
     }
-
+    this.showInfoModal = false;
     this.showDeleteModal = false;
   }
   public deletePersonCancel() {
