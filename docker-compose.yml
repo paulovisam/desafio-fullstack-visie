@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  backend-visie:
+    image: backend-visie
+    container_name: container-backend-desafio-visie
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env

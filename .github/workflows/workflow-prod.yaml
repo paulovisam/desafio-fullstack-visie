@@ -1,0 +1,32 @@
+name: Workflow Prod
+on:
+  push:
+    branches:
+      [main]
+  pull_request:
+    branches:
+      [main]
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_PYTEST_URL: ${{ secrets.DATABASE_PYTEST_URL }}
+  
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Verificar o repositório
+      uses: actions/checkout@v3
+    
+    - name: Configurar variáveis de ambiente
+      run: |
+        echo "DATABASE_URL=$DATABASE_URL" >> .env
+        echo "DATABASE_PYTEST_URL=$DATABASE_PYTEST_URL" >> .env
+
+    - name: Stop Old Containers
+      run: docker compose down -v || true
+    
+    - name: Executar Docker Compose
+      run: docker compose up -d --build
