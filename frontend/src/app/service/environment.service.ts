@@ -12,9 +12,9 @@ export class EnvironmentService {
 
     public getEnvironment() {
       if(this.production) {
-        return "https://144.22.220.135:8000/api/v1";
+        return "http://144.22.220.135:8000/api/v1";
       } else {
-        return "http://192.168.100.126:8000/api/v1";
+        return "http://localhost:8000/api/v1";
       }
     }
 
